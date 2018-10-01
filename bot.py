@@ -71,7 +71,7 @@ n=0
 token=os.environ["BOT_API_TOKEN"]
 bot_username="@mrnaifbot"
 global mats
-mats=["гав"]
+mats=[]
 bot = telebot.AsyncTeleBot(token)
 api_id=274851
 api_hash="80ac08391d48da6eda25cca9d65480fe"
