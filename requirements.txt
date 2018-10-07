@@ -2,6 +2,6 @@ telebot
 SpeechRecognition
 pydub
 pyTelegramBotAPI
-googletrans
+https://github.com/ssut/py-googletrans
 Telethon-sync
 emoji
