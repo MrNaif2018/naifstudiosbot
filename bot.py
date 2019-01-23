@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#pylint: disable=E1101
 import emoji
 import telebot,os,time,speech_recognition as sr, pydub as p,googletrans,sqlite3,random,operator as oper
 from telethon import TelegramClient
@@ -271,7 +272,7 @@ def test(sent):
                 bot.edit_message_text(chat_id=sent.message.chat.id,message_id=sent.message.message_id,text="Настройте ограничения для "+text+"(0-отключено,1-включено):"+"\n"+"Отправлять сообщения - "+str(int(msg))+"\n"+"Отправлять медиафайлы - "+str(int(media))+"\n"+"Отправлять стикеры и GIF - "+str(int(gif))+
                                  "\n"+"Предпросмотр ссылок - "+str(int(links)),reply_markup=markup2)
             if sent.data == "05":
-                sentt=bot.send_message(sent.message.chat.id,"Успешно ограничил пользователя "+text+" на "+text2+" секунд!")
+                bot.send_message(sent.message.chat.id,"Успешно ограничил пользователя "+text+" на "+text2+" секунд!")
                 restrict(sent.message)
             try:
                 if sent.data in ["1","2","3","4","5","6"]:
@@ -653,7 +654,7 @@ def repeat_all_photos(message):
             data_chat=i
     if ((data_chat[2] != 1) or (bot.get_chat_member(message.chat.id,message.from_user.id).wait().status == "administrator" or bot.get_chat_member(message.chat.id,message.from_user.id).wait().status == "creator")) and data_chat[2] != 2:
         with open("image.jpg","rb") as ph:
-            a=bot.send_photo(message.chat.id,ph,None)
+            bot.send_photo(message.chat.id,ph,None)
             if message.from_user.username != None:
                 print(emoji.demojize("@"+message.from_user.username+"("+message.from_user.first_name+"): "+"Отправил фото"))
             else:
@@ -672,7 +673,6 @@ def rate_check(message):
             data_chat=i
     if ((data_chat[6] != 1) or (bot.get_chat_member(message.chat.id,message.from_user.id).wait().status == "administrator" or bot.get_chat_member(message.chat.id,message.from_user.id).wait().status == "creator")) and data_chat[6] != 2:
         r=0
-        rating=0
         if message.reply_to_message != None:
             if message.from_user.username != message.reply_to_message.from_user.username:
                 msg=list(message.text)
